@@ -1,0 +1,20 @@
+spring:
+  redis:
+    host: 192.168.101.100
+    port: 6379
+
+# redis单机模式
+#redisson:
+#  address: redis://192.168.101.100:6379
+#  password:
+
+# 哨兵模式
+#redisson:
+#  master-name: mymaster
+#  password:
+#  sentinel-addresses: redis://192.168.101.100:26379,redis://192.168.101.101:26379,redis://192.168.101.102:26379
+
+# 集群模式
+redisson:
+  password:
+  node-address: redis://192.168.101.100:30001,redis://192.168.101.100:30002,redis://192.168.101.100:30003,redis://192.168.101.100:30004,redis://192.168.101.100:30005,redis://192.168.101.100:30006
