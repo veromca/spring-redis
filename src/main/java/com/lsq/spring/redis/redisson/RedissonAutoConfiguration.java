@@ -29,21 +29,21 @@ public class RedissonAutoConfiguration {
      *
      * @return
      */
-//    @Bean
-//    @ConditionalOnProperty(name = "redisson.address")
-//    RedissonClient redissonSingle() {
-//        Config config = new Config();
-//        SingleServerConfig serverConfig = config.useSingleServer()
-//                .setAddress(redssionProperties.getAddress())
-//                .setTimeout(redssionProperties.getTimeout())
-//                .setConnectionPoolSize(redssionProperties.getConnectionPoolSize())
-//                .setConnectionMinimumIdleSize(redssionProperties.getConnectionMinimumIdleSize());
-//        if (StringUtils.isNotBlank(redssionProperties.getPassword())) {
-//            serverConfig.setPassword(redssionProperties.getPassword());
-//        }
-//
-//        return Redisson.create(config);
-//    }
+    @Bean
+    @ConditionalOnProperty(name = "redisson.address")
+    RedissonClient redissonSingle() {
+        Config config = new Config();
+        SingleServerConfig serverConfig = config.useSingleServer()
+                .setAddress(redssionProperties.getAddress())
+                .setTimeout(redssionProperties.getTimeout())
+                .setConnectionPoolSize(redssionProperties.getConnectionPoolSize())
+                .setConnectionMinimumIdleSize(redssionProperties.getConnectionMinimumIdleSize());
+        if (StringUtils.isNotBlank(redssionProperties.getPassword())) {
+            serverConfig.setPassword(redssionProperties.getPassword());
+        }
+
+        return Redisson.create(config);
+    }
 
     /**
      * 哨兵模式Sentinel自动装配
@@ -69,7 +69,7 @@ public class RedissonAutoConfiguration {
      * 集群模式Cluster自动装配
      * @return
      */
-    @Bean
+/*    @Bean
     RedissonClient redissonCluster() {
         Config config = new Config();
         ClusterServersConfig serverConfig = config.useClusterServers().addNodeAddress(redssionProperties.getNodeAddress())
@@ -80,7 +80,7 @@ public class RedissonAutoConfiguration {
             serverConfig.setPassword(redssionProperties.getPassword());
         }
         return Redisson.create(config);
-    }
+    }*/
 
     /**
      * 装配locker类，并将实例注入到RedissLockUtil中
